@@ -1,0 +1,45 @@
+{
+  "name": "maggoo",
+  "version": "0.1.0",
+  "description": "Futuristic models & collections",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test JASMINE_CONFIG_PATH=jasmine.json node --harmony node_modules/jasmine/bin/jasmine.js",
+    "cover": "NODE_ENV=test JASMINE_CONFIG_PATH=jasmine.json node --harmony ./node_modules/nyc/bin/nyc.js --reporter=lcov node_modules/jasmine/bin/jasmine.js"
+  },
+  "author": "Bram Loogman <bram@moderntimes.nu>",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-plugin-istanbul": "^3.0.0",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "jasmine": "^2.4.1",
+    "nyc": "^10.0.0"
+  },
+  "nyc": {
+    "include": [
+      "lib/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "babel": {
+    "presets": [
+      "es2017"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  }
+}

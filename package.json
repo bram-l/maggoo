@@ -1,6 +1,6 @@
 {
   "name": "maggoo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Futuristic models & collections",
   "directories": {
     "test": "test"
@@ -11,8 +11,7 @@
   },
   "author": "Bram Loogman <bram@moderntimes.nu>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-plugin-istanbul": "^3.0.0",
     "babel-preset-es2017": "^6.16.0",

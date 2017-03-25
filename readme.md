@@ -1,8 +1,14 @@
 # Maggoo
-Generic data modeling using proxified ES6 classes
+Generic data modeling using proxified ES6 classes.
+
+- No transpilation, no dependencies.
+- Define models by extending classes.
+- Basic (promise-based) schema validation with support for validator functions like [validator.js](https://github.com/chriso/validator.js).
+
 
 ## Requirements
-- Node.js >= ~6.0
+- Node.js >= 6.0.0
+
 
 ## Installation
 
@@ -10,11 +16,12 @@ Generic data modeling using proxified ES6 classes
 npm install maggoo --save
 ```
 
+
 ## Usage
 
 ### Model
 
-Exensible by default...
+Flexible by default...
 ```js
 const { Model } = require('maggoo')
 
@@ -39,16 +46,16 @@ console.log(polly.$data.id)
 
 ```
 
-...or strict by definition
+...or strict by schema definition
 ```js
 const { Model } = require('maggoo')
 
 class Polly extends Model {
 
-    static get definition()
+    static get schema()
     {
         return {
-            name: null
+            name: 'string'
         }
     }
 
@@ -56,12 +63,42 @@ class Polly extends Model {
 
 const polly = new Polly()
 
-// Set a defined property
+// Set a defined property with a valid value
 polly.name = 'foo'
 
-// Set an undefined property
-polly.id = 1
+// Set an undefined property with an invalid value
+polly.foo = 'bar'
 // > Throws: TypeError
+```
+
+...and with a validition support
+```js
+const { Model } = require('maggoo')
+
+class Polly extends Model {
+
+    static get schema()
+    {
+        return {
+            name: 'string'
+        }
+    }
+
+}
+
+const polly = new Polly()
+
+// Set a defined property with an invalid value
+polly.name = 1
+// > Throws: TypeError
+
+polly.validate()
+    .catch(() =>
+    {
+        console.log(polly.$errors)
+    })
+
+// > [ 'Cannot set 'name' on Polly with value '1', 'name' should be a string' ]
 ```
 
 ### Collection
@@ -72,7 +109,7 @@ const { Model, Collection } = require('maggoo')
 
 class Polly extends Model {
 
-    static get definition()
+    static get schema()
     {
         return {
             name: null
@@ -104,11 +141,14 @@ for (const polly in pollies)
 // > 'Bar'
 ```
 
-...and proxies function calls
+...proxies function calls
 ```js
 pollies.get('name')
 // > ['Foo', 'Bar']
+```
 
+...and waits for promises
+```js
 pollies.hello().then(() => console.log('Hello world'))
 // > Hello my name is Foo
 // > Hello my name is Bar

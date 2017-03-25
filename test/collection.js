@@ -24,7 +24,6 @@ describe('Collection', () =>
 		items.push('foo')
 
 		expect(items.length).toBe(1)
-		// expect(items.$items.length).toBe(1)
 
 		for (const item of items)
 		{
@@ -36,7 +35,6 @@ describe('Collection', () =>
 		items.splice(0, 1)
 
 		expect(items.length).toBe(0)
-		// expect(items.$items.length).toBe(0)
 
 		expect(items instanceof Array).toBe(true)
 		expect(items instanceof Collection).toBe(true)
@@ -55,7 +53,6 @@ describe('Collection', () =>
 		items.push('baz')
 
 		expect(items.length).toBe(3)
-		// expect(items.$items.length).toBe(3)
 
 		expect(items[0]).toBe('foo')
 		expect(items[1]).toBe('bar')
@@ -106,5 +103,14 @@ describe('Collection', () =>
 		const items = new Collection(Foo, [foo, bar])
 
 		expect('then' in items.bar()).toBe(true)
+	})
+
+	it('should return undefined for undefined properties', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+
+		const items = new Collection(Foo, [foo])
+
+		expect(items.foo).toBeUndefined()
 	})
 })

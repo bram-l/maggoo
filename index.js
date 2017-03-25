@@ -2,5 +2,5 @@
 
 module.exports = {
 	Collection: require('./lib/Collection'),
-	Model: require('./lib/Model'),
+	Model: require('./lib/Model')
 }

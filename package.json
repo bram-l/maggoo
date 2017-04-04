@@ -11,6 +11,14 @@
   },
   "author": "Bram Loogman <bram@moderntimes.nu>",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/bram-l/maggoo.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/bram-l/maggoo/issues",
+    "email" : "bram@moderntimes.nu"
+  },
   "dependencies": {},
   "devDependencies": {
     "babel-plugin-istanbul": "^3.0.0",

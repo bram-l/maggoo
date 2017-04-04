@@ -1,6 +1,6 @@
 {
   "name": "maggoo",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Futuristic models & collections",
   "directories": {
     "test": "test"
@@ -11,13 +11,13 @@
   },
   "author": "Bram Loogman <bram@moderntimes.nu>",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/bram-l/maggoo.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bram-l/maggoo.git"
   },
   "bugs": {
-    "url" : "https://github.com/bram-l/maggoo/issues",
-    "email" : "bram@moderntimes.nu"
+    "url": "https://github.com/bram-l/maggoo/issues",
+    "email": "bram@moderntimes.nu"
   },
   "dependencies": {},
   "devDependencies": {

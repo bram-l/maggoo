@@ -113,4 +113,26 @@ describe('Collection', () =>
 
 		expect(items.foo).toBeUndefined()
 	})
+
+	it('should be extended using the Collection method', () =>
+	{
+		expect(Foo.Collection.prototype instanceof Collection).toBe(true)
+	})
+
+	it('should be cached using the Collection method', () =>
+	{
+		expect(Foo.Collection).toBe(Foo.Collection)
+	})
+
+	it('should be created using the collection factory method', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+
+		const foos = Foo.collection([foo, bar])
+
+		expect(foos instanceof Collection).toBe(true)
+		expect(foos.$Model).toBe(Foo)
+		expect(foos.length).toBe(2)
+	})
 })

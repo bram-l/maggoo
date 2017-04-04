@@ -35,6 +35,7 @@ polly.set('id', 1)
 
 // get
 console.log(polly.id)
+// > 1
 
 // or
 console.log(polly.get('id'))
@@ -90,7 +91,6 @@ const polly = new Polly()
 
 // Set a defined property with an invalid value
 polly.name = 1
-// > Throws: TypeError
 
 polly.validate()
     .catch(() =>
@@ -108,13 +108,6 @@ Behaves like an Array...
 const { Model, Collection } = require('maggoo')
 
 class Polly extends Model {
-
-    static get schema()
-    {
-        return {
-            name: null
-        }
-    }
 
     hello()
     {

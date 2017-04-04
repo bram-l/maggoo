@@ -109,10 +109,11 @@ const { Model, Collection } = require('maggoo')
 
 class Polly extends Model {
 
-    hello()
+    sayHello()
     {
         console.log(`Hello my name is ${ this.name }`)
 
+        // Just for demonstrating how a Collection hanldes promises
         return Promise.resolve()
     }
 
@@ -121,7 +122,7 @@ class Polly extends Model {
 const foo = new Polly({ name: 'Foo' })
 const bar = new Polly({ name: 'Bar' })
 
-const pollies = new Collection(Polly, [foo, bar])
+const pollies = Polly.collection([foo, bar])
 
 console.log(pollies.length)
 // > 2
@@ -142,7 +143,7 @@ pollies.get('name')
 
 ...and waits for promises
 ```js
-pollies.hello().then(() => console.log('Hello world'))
+pollies.sayHello().then(() => console.log('Hello world'))
 // > Hello my name is Foo
 // > Hello my name is Bar
 // > Hello world

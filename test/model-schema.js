@@ -4,7 +4,7 @@ describe('Model Schema', () =>
 {
 	const Model = require('../lib/Model')
 
-	it('can get undefined property on model with strict schema', () =>
+	it('can get undefined property on a model with strict schema', () =>
 	{
 		class ExtendedModel extends Model
 		{
@@ -21,7 +21,7 @@ describe('Model Schema', () =>
 		expect(instance.getProperty('foo')).toBeUndefined()
 	})
 
-	it('can get undefined properties through proxy on model with strict schema', () =>
+	it('can get undefined properties through proxy on a model with strict schema', () =>
 	{
 		class ExtendedModel extends Model
 		{
@@ -38,7 +38,7 @@ describe('Model Schema', () =>
 		expect(instance.foo).toBeUndefined()
 	})
 
-	it('cannot set undefined properties on model with a strict schema', () =>
+	it('cannot set undefined properties on a model with a strict schema', () =>
 	{
 		class ExtendedModel extends Model
 		{
@@ -58,7 +58,7 @@ describe('Model Schema', () =>
 			.toThrowError('Cannot set undefined properties on a model with a strict schema: foo')
 	})
 
-	it('can set undefined properties on model with a non-strict schema', () =>
+	it('can set undefined properties on a model with a non-strict schema', () =>
 	{
 		class ExtendedModel extends Model
 		{
@@ -323,7 +323,7 @@ describe('Model Schema', () =>
 			})
 	})
 
-	it('should validate a property on model with a specified validator and type', (done) =>
+	it('should validate a property on a model with a specified validator and type', (done) =>
 	{
 		class ExtendedModel extends Model
 		{
@@ -354,6 +354,45 @@ describe('Model Schema', () =>
 			.then(() =>
 			{
 				instance.foo = 'foo'
+
+				return instance.validate()
+			})
+			.then(() =>
+			{
+				done()
+			})
+	})
+
+	it('should collect multiple errors on a model with different validators', (done) =>
+	{
+		class ExtendedModel extends Model
+		{
+			static get schema()
+			{
+				return {
+					foo: 'string',
+					bar: (value) => typeof value === 'number',
+				}
+			}
+		}
+
+		const instance = new ExtendedModel()
+
+		instance.foo = 1
+		instance.bar = 'bar'
+
+		return instance.validate()
+			.then(() => done.fail('Instance should validate'))
+			.catch(() =>
+			{
+				expect(instance.$errors.length).toBe(2)
+				expect(instance.$errors[0]).toBe('Cannot set \'foo\' on ExtendedModel with value \'1\', \'foo\' should be a string')
+				expect(instance.$errors[1]).toBe('Cannot set \'bar\' on ExtendedModel with value \'bar\', validator returned: \'false\'')
+			})
+			.then(() =>
+			{
+				instance.foo = 'foo'
+				instance.bar = 1
 
 				return instance.validate()
 			})

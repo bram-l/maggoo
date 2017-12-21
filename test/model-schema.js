@@ -401,4 +401,28 @@ describe('Model Schema', () =>
 				done()
 			})
 	})
+
+	it('should throw an error for invalid schema definitions', (done) =>
+	{
+		class ExtendedModel extends Model
+		{
+			static get schema()
+			{
+				return {
+					foo: 1
+				}
+			}
+		}
+
+		const instance = new ExtendedModel({ foo: 'foo' })
+
+		return instance.validate()
+			.then(() => done.fail('Instance should not validate'))
+			.catch(() =>
+			{
+				expect(instance.$errors.length).toBe(1)
+				expect(instance.$errors[0]).toBe('Invalid schema definition for \'foo\'')
+				done()
+			})
+	})
 })

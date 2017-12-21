@@ -137,4 +137,87 @@ describe('Collection', () =>
 		expect(foos.$Model).toBe(Foo)
 		expect(foos.length).toBe(2)
 	})
+
+	it('should support filtering', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+
+		const foos = Foo.collection([foo, bar])
+
+		const filtered = foos.filter((item) => item.name === 'foo')
+
+		expect(filtered.length).toBe(1)
+		expect(filtered[0].name).toBe('foo')
+		expect(filtered instanceof Collection).toBe(true)
+	})
+
+	it('should support sorting', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+
+		const foos = Foo.collection([foo, bar])
+
+		// sort by name
+		foos.sort((a, b) =>
+		{
+			const nameA = a.name.toUpperCase()
+			const nameB = b.name.toUpperCase()
+
+			if (nameA < nameB)
+			{
+				return -1
+			}
+			if (nameA > nameB)
+			{
+				return 1
+			}
+
+			return 0
+		})
+
+		expect(foos.length).toBe(2)
+		expect(foos[0].name).toBe('bar')
+		expect(foos[1].name).toBe('foo')
+		expect(foos instanceof Collection).toBe(true)
+	})
+
+	it('should support slicing', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+
+		const foos = Foo.collection([foo, bar])
+
+		const sliced = foos.slice(1)
+
+		expect(sliced.get('name')).toEqual(['bar'])
+	})
+
+	it('should support deleting items splicing', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+
+		const foos = Foo.collection([foo, bar])
+
+		const spliced = foos.splice(0, 1)
+
+		expect(foos.get('name')).toEqual(['bar'])
+		expect(spliced.get('name')).toEqual(['foo'])
+	})
+
+	it('should support adding items using splicing', () =>
+	{
+		const foo = new Foo({ name: 'foo' })
+		const bar = new Foo({ name: 'bar' })
+		const baz = new Foo({ name: 'baz' })
+
+		const foos = Foo.collection([foo, baz])
+
+		foos.splice(1, 0, bar)
+
+		expect(foos.get('name')).toEqual(['foo', 'bar', 'baz'])
+	})
 })

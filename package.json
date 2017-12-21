@@ -22,10 +22,10 @@
   "dependencies": {},
   "devDependencies": {
     "babel-plugin-istanbul": "^3.0.0",
-    "babel-preset-es2017": "^6.16.0",
-    "babel-register": "^6.18.0",
-    "jasmine": "^2.4.1",
-    "nyc": "^10.0.0"
+    "babel-preset-es2017": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "jasmine": "^2.8.0",
+    "nyc": "^11.4.1"
   },
   "nyc": {
     "include": [

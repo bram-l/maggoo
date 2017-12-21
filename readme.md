@@ -1,6 +1,7 @@
 # Maggoo
 
 [![Build Status](https://travis-ci.org/bram-l/maggoo.svg?branch=master)](https://travis-ci.org/bram-l/maggoo)
+[![Coverage Status](https://coveralls.io/repos/github/bram-l/maggoo/badge.svg?branch=master)](https://coveralls.io/github/bram-l/maggoo?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bram-l/maggoo.svg)](https://greenkeeper.io/)
 
 ### Generic data modeling using proxified ES6 classes.

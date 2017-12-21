@@ -247,10 +247,47 @@ describe('Model Schema', () =>
 			})
 	})
 
-	it('should validate properties on a model with a specified validator', (done) =>
+	it('should validate properties on a model with a specified validator as value', (done) =>
 	{
-		class ExtendedModel extends Model {
+		class ExtendedModel extends Model
+		{
+			static get schema()
+			{
+				return {
+					foo: (value) => typeof value === 'string',
+				}
+			}
+		}
 
+		const instance = new ExtendedModel()
+
+		expect(instance.foo).toBeUndefined()
+
+		instance.foo = 1
+
+		return instance.validate()
+			.then(() => done.fail('Instance should validate'))
+			.catch(() =>
+			{
+				expect(instance.$errors.length).toBe(1)
+				expect(instance.$errors[0]).toBe('Cannot set \'foo\' on ExtendedModel with value \'1\', validator returned: \'false\'')
+			})
+			.then(() =>
+			{
+				instance.foo = 'foo'
+
+				return instance.validate()
+			})
+			.then(() =>
+			{
+				done()
+			})
+	})
+
+	it('should validate properties on a model with a specified validator as object property', (done) =>
+	{
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {

@@ -5,7 +5,8 @@ describe('Collection', () =>
 	const Model = require('../lib/Model')
 	const Collection = require('../lib/Collection')
 
-	class Foo extends Model {
+	class Foo extends Model
+	{
 		get foo()
 		{
 			return 'foo'
@@ -77,7 +78,8 @@ describe('Collection', () =>
 		const foo = new Foo({ name: 'foo' })
 		const bar = new Foo({ name: 'bar' })
 
-		class Foos extends Collection {
+		class Foos extends Collection
+		{
 			foo()
 			{
 				return 'foo'

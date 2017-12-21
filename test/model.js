@@ -123,14 +123,13 @@ describe('Model', () =>
 
 	it('can not delete undefined properties', () =>
 	{
-
 		const instance = new Model({ id: 1 })
 
 		expect(() =>
 		{
 			delete instance.foo
 		})
-		.toThrowError(TypeError)
+			.toThrowError(TypeError)
 	})
 
 	it('can not delete class properties', () =>
@@ -141,7 +140,7 @@ describe('Model', () =>
 		{
 			delete instance.$data
 		})
-		.toThrowError(TypeError)
+			.toThrowError(TypeError)
 	})
 
 	it('will be marked as dirty after value has changed', () =>

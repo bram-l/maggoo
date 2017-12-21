@@ -6,15 +6,14 @@ describe('Model Schema', () =>
 
 	it('can get undefined property on model with strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -24,15 +23,14 @@ describe('Model Schema', () =>
 
 	it('can get undefined properties through proxy on model with strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -42,14 +40,13 @@ describe('Model Schema', () =>
 
 	it('cannot set undefined properties on model with a strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -58,20 +55,19 @@ describe('Model Schema', () =>
 		{
 			instance.foo = 'foo'
 		})
-		.toThrowError('Cannot set undefined properties on a model with a strict schema: foo')
+			.toThrowError('Cannot set undefined properties on a model with a strict schema: foo')
 	})
 
 	it('can set undefined properties on model with a non-strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					$strict: false
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -80,20 +76,19 @@ describe('Model Schema', () =>
 		{
 			instance.foo = 'foo'
 		})
-		.not.toThrowError()
+			.not.toThrowError()
 
 		expect(instance.foo).toBe('foo')
 	})
 
 	it('should validate all properties on a model without a schema', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return null
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -109,15 +104,14 @@ describe('Model Schema', () =>
 
 	it('should validate all properties on a model without a strict schema', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					$strict: false
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -133,14 +127,13 @@ describe('Model Schema', () =>
 
 	it('should not validate properties on a model with a strict schema', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -157,15 +150,14 @@ describe('Model Schema', () =>
 
 	it('should validate valid properties on a model with a schema', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -181,15 +173,14 @@ describe('Model Schema', () =>
 
 	it('should validate properties on a model with a schema', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -219,8 +210,8 @@ describe('Model Schema', () =>
 
 	it('should validate properties on a model with a specified type', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
@@ -229,7 +220,6 @@ describe('Model Schema', () =>
 					}
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -269,7 +259,6 @@ describe('Model Schema', () =>
 					}
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -299,8 +288,8 @@ describe('Model Schema', () =>
 
 	it('should validate a property on model with a specified validator and type', (done) =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
@@ -310,7 +299,6 @@ describe('Model Schema', () =>
 					}
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()

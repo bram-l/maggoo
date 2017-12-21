@@ -32,8 +32,8 @@ describe('Extended Model', () =>
 
 	it('sets property through setter should ignore the schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {}
@@ -48,7 +48,6 @@ describe('Extended Model', () =>
 			{
 				return this.$data.foo
 			}
-
 		}
 
 		const extended = new ExtendedModel()
@@ -64,8 +63,8 @@ describe('Extended Model', () =>
 
 	it('sets property with setter through setProperty method should ignore the schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {}
@@ -80,7 +79,6 @@ describe('Extended Model', () =>
 			{
 				return this.$data.foo
 			}
-
 		}
 
 		const extended = new ExtendedModel()
@@ -94,15 +92,14 @@ describe('Extended Model', () =>
 
 	it('can get undefined property on model with strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -112,15 +109,14 @@ describe('Extended Model', () =>
 
 	it('can get undefined properties through proxy on model with strict schema', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			static get schema()
 			{
 				return {
 					foo: 'string'
 				}
 			}
-
 		}
 
 		const instance = new ExtendedModel()
@@ -130,13 +126,12 @@ describe('Extended Model', () =>
 
 	it('internally gets properties through proxy', () =>
 	{
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			get bar()
 			{
 				return `bar-${ this.foo }`
 			}
-
 		}
 
 		const extended = new ExtendedModel({ foo: 'foo' })
@@ -150,13 +145,12 @@ describe('Extended Model', () =>
 
 		const _bar = Symbol('bar')
 
-		class ExtendedModel extends Model {
-
+		class ExtendedModel extends Model
+		{
 			get [_bar]()
 			{
 				return `bar-${ this.foo }`
 			}
-
 		}
 
 		const extended = new ExtendedModel({ foo: 'foo' })

@@ -1,7 +1,9 @@
 # Maggoo
 
+[![Build Status](https://travis-ci.org/bram-l/maggoo.svg?branch=master)](https://travis-ci.org/bram-l/maggoo)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bram-l/maggoo.svg)](https://greenkeeper.io/)
-Generic data modeling using proxified ES6 classes.
+
+### Generic data modeling using proxified ES6 classes.
 
 - No transpilation, no dependencies.
 - Define models by extending classes.

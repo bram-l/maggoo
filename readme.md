@@ -1,4 +1,6 @@
 # Maggoo
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/bram-l/maggoo.svg)](https://greenkeeper.io/)
 Generic data modeling using proxified ES6 classes.
 
 - No transpilation, no dependencies.

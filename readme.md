@@ -72,7 +72,7 @@ polly.foo = 'bar'
 // > Throws: TypeError
 ```
 
-...and with a validition support
+...and with a validation support
 ```js
 const { Model } = require('maggoo')
 
@@ -81,7 +81,8 @@ class Polly extends Model {
     static get schema()
     {
         return {
-            name: 'string'
+            name: 'string',
+            age: (value) => typeof value === 'number'
         }
     }
 
@@ -91,6 +92,7 @@ const polly = new Polly()
 
 // Set a defined property with an invalid value
 polly.name = 1
+polly.age = 'foo'
 
 polly.validate()
     .catch(() =>
@@ -98,7 +100,9 @@ polly.validate()
         console.log(polly.$errors)
     })
 
-// > [ 'Cannot set 'name' on Polly with value '1', 'name' should be a string' ]
+// > [ 'Cannot set 'name' on Polly with value '1', 'name' should be a string',
+//     'Cannot set 'age' on Polly with value 'bar', validator returned: 'false' ]
+
 ```
 
 ### Collection

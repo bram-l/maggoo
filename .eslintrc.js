@@ -120,7 +120,7 @@ module.exports = {
         "eol-last": 2,                               // enforce newline at the end of file, with no multiple empty lines
         "func-names": 0,                             // require function expressions to have a name (off by default)
         "func-style": 0,                             // enforces use of function declarations or expressions (off by default)
-        "indent": [ 2, "tab" ],                        // specify tab or space width for your code (fixable)
+        "indent": [ 2, "tab", { "SwitchCase": 1} ],  // specify tab or space width for your code (fixable)
         "key-spacing": 2,                            // enforces spacing between keys and values in object literal properties
         "keyword-spacing": 2,                        // enforces spacing between keys and values in object literal properties
         "lines-around-comment": [ 2, {               // enforce empty lines around comments

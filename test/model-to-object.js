@@ -39,6 +39,26 @@ describe('Model toObject', () =>
 		expect(object).toEqual({ name: 'foo' })
 	})
 
+	it('returns an object with specified key when null', () =>
+	{
+		const instance = new Model({
+			name: null
+		})
+
+		const object = instance.toObject('name')
+
+		expect(object).toEqual({ name: null })
+	})
+
+	it('returns a null value for specified key when undefined', () =>
+	{
+		const instance = new Model()
+
+		const object = instance.toObject('name')
+
+		expect(object).toEqual({ name: null })
+	})
+
 	it('returns an object with specified keys', () =>
 	{
 		const instance = new Model({

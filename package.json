@@ -29,7 +29,7 @@
     "babel-register": "^6.26.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
-    "jasmine": "^2.8.0",
+    "jasmine": "^3.3.0",
     "nyc": "^11.4.1"
   },
   "nyc": {

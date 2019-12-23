@@ -30,7 +30,7 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.13.1",
     "jasmine": "^2.8.0",
-    "nyc": "^11.4.1"
+    "nyc": "^15.0.0"
   },
   "nyc": {
     "include": [
